@@ -1,16 +1,22 @@
 {
   "development": {
-    "database": "express_auth_development",
+    "username": "tgm98",
+    "password": "1532",
+    "database": "fav_games_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "express_auth_test",
+    "username": "tgm98",
+    "password": "1532",
+    "database": "fav_games_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "express_auth_production",
+    "username": "tgm98",
+    "password": "1532",
+    "database": "fav_games_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
