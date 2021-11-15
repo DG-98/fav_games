@@ -6,6 +6,7 @@ const session = require('express-session')
 const passport = require('./config/ppConfig')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
+const axios = require("axios")
 
 
 // views (ejs and layouts) set up
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     next()
 })
+app.use("/games", require("./controllers/rawgRoutes"))
 
 // controllers middleware 
 app.use('/auth', require('./controllers/auth'))
