@@ -1,1 +1,9 @@
 <h2><%= currentUser.name %>'s Profile</h2>
+
+<ul>
+  <%results.forEach(function(result) {%>
+    <li>
+      <a href="/games/<%=result.gameId%>"><%=result.name%></a>
+    </li>
+  <%})%>
+</ul>

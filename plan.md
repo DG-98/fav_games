@@ -7,6 +7,6 @@
 
 QUESTIONS FOR TOMORROW 
 1. find out how to add games to join table (maybe makeshift solution with "sync" button that adds to join table and renders??)
-2. link to view favorites 
+2. link to view favorites - done 
 3. comments post/edit/delete 
 

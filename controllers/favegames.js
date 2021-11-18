@@ -5,10 +5,13 @@ const db = require("../models")
 
 
 router.get('/', (req, res) => {
-db.games.findAll()
-console.log("these are games", games)
+db.userGame.findAll({
+    where: {userId: res.locals.currentUser.id}
+})
 .then((faves)=>{
-    res.render('faves', {results: faves})
+    console.log(res.locals.currentUser.id)
+    console.log("these are faves", faves);
+    res.render('profile', { results: faves})
 })
 .catch((error) => {
       console.error
@@ -17,14 +20,14 @@ console.log("these are games", games)
 
 //route to save faves 
 router.post("/addFave", (req, res)=>{
-    console.log('favegames');
+    // console.log('favegames');
     const data = JSON.parse(JSON.stringify(req.body))
     console.log("this is data", data)
     console.log("current user?", res.locals.currentUser);
-    db.game.create({
+    db.userGame.create({
       gameId: data.gameId,
       userId: res.locals.currentUser.id,
-      name: data.name
+      name: data.name,
     })
    
       .then(createdFave =>{

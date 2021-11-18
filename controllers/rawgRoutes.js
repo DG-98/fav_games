@@ -32,7 +32,7 @@ router.get("/:game_id", function(req, res){
   .then((apiRes)=>{
     // console.log("this is the api response data", apiRes.data) 
     let name = apiRes.data.name
-    let description = apiRes.data.description
+    let description = apiRes.data.description.replace(/<[^>]+>/g, " ")
     let released = apiRes.data.released 
     let background_image = apiRes.data.background_image
     let metacritic = apiRes.data.metacritic
