@@ -38,7 +38,7 @@ app.use((req, res, next) => {
     next()
 })
 app.use("/games", require("./controllers/rawgRoutes"))
-
+app.use("/favorites", require("./controllers/favegames"))
 // controllers middleware 
 app.use('/auth', require('./controllers/auth'))
 

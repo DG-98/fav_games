@@ -4,3 +4,19 @@
 <h2>Release Date:<%=released%></h2>
 <h2>Metacritic: <%=metacritic%></h2>
 <h3><%=description%></h3>
+
+<form action="/favorites/addFave" method="POST">
+    <input hidden type="text" name="gameId" value="<%=gameId%>"> 
+    <!-- <!-- <input hidden type="text" name="imdbId" value="<%= %>"> -->
+    <button type="submit">Add to favorites</button>
+</form>
+
+<h3>Add a new comment</h3>
+<form method="POST" action="/favorites/comments">
+  <label for="name">Your Name:</label>
+  <input type="text" name="name">
+  <label for="content">Comment:</label>
+  <input type="text" name="content">
+  <input type="submit">
+</form>
+
