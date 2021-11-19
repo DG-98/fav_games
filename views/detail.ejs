@@ -1,18 +1,18 @@
 
-<h3><img src="<%= background_image%>" alt=""></h3>
-<h1><%=name%></h1>
-<h2>Release Date:<%=released%></h2>
-<h2>Metacritic: <%=metacritic%></h2>
-<h3><%=description%></h3>
+<h3><img src="<%= gameInfo.background_image%>" alt=""></h3>
+<h1><%=gameInfo.name%></h1>
+<h2>Release Date:<%=gameInfo.released%></h2>
+<h2>Metacritic: <%=gameInfo.metacritic%></h2>
+<h3><%=gameInfo.description%></h3>
 
 <form action="/favorites/addFave" method="POST">
-    <input hidden type="text" name="gameId" value="<%=gameId%>"> 
-    <input hidden type="text" name="name" value="<%=name%>">
+    <input hidden type="text" name="gameId" value="<%=gameInfo.gameId%>"> 
+    <input hidden type="text" name="name" value="<%=gameInfo.name%>">
     <button type="submit">Add to favorites</button>
 </form>
 
 <h3>Add a new comment</h3>
-<form method="POST" action="/favorites/comments">
+<form method="POST" action="/games/comments">
   <label for="name">Your Name:</label>
   <input type="text" name="name">
   <label for="content">Comment:</label>
@@ -20,3 +20,11 @@
   <input type="submit">
 </form>
 
+
+  <%comments.forEach(comment => {%>
+    <p>
+      <%= comments.content %>
+      <br>
+      <%= comments.name %>
+    </p>
+    <%})%>

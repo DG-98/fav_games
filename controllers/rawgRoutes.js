@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const axios = require("axios")
+const db = require("../models")
 
 
 //route to show various games after searcing a title. Displays titles using api call
@@ -26,27 +27,46 @@ router.get("/results", function (req, res) {
 router.get("/:game_id", function(req, res){
   let rawgId = req.params.game_id 
 
-  axios.get(
-    `https://api.rawg.io/api/games/${rawgId}?key=${process.env.RAWG_KEY}`
-  )
-  .then((apiRes)=>{
-    // console.log("this is the api response data", apiRes.data) 
-    let name = apiRes.data.name
-    let description = apiRes.data.description.replace(/<[^>]+>/g, " ")
-    let released = apiRes.data.released 
-    let background_image = apiRes.data.background_image
-    let metacritic = apiRes.data.metacritic
-    let gameId = apiRes.data.id 
+  axios
+    .get(`https://api.rawg.io/api/games/${rawgId}?key=${process.env.RAWG_KEY}`)
+    .then((apiRes) => {
+      // console.log("this is the api response data", apiRes.data)
+      let name = apiRes.data.name
+      let description = apiRes.data.description.replace(/<[^>]+>/g, " ")
+      let released = apiRes.data.released
+      let background_image = apiRes.data.background_image
+      let metacritic = apiRes.data.metacritic
+      let gameId = apiRes.data.id
 
-    res.render("detail", {
-      name: name,
-      description: description,
-      released: released,
-      background_image: background_image,
-      metacritic: metacritic,
-      gameId: gameId
+      return {
+        name: name,
+        description: description,
+        released: released,
+        background_image: background_image,
+        metacritic: metacritic,
+        gameId: gameId,
+      }
     })
-  })
+    .then((gameInfo) => {
+      console.log("This is game info", gameInfo)
+      console.log("this is the game id", gameInfo.gameId)
+      db.comment
+        .findAll({
+          where: { gameId: gameInfo.gameId },
+        })
+        .then((result) => {
+          console.log("this is comment result", result)
+          console.log("gamedata?", gameInfo)
+          return { gameInfo: gameInfo, comments: result }
+        })
+        .then((stuff) => {
+          console.log("this is stuff", stuff)
+          res.render("detail", { gameInfo: stuff.gameInfo, comments: stuff.comments })
+        }) 
+    })
+    
+    
+       
   .catch((err) => {
       console.log(err)
   })
@@ -54,17 +74,17 @@ router.get("/:game_id", function(req, res){
 
 //route in progress to make comments 
 router.post("/comments", (req, res) => {
-  let gameId = req.params.game_id
+  // let gameId = req.params.game_id
   db.comment
     .create({
       name: res.locals.currentUser.name,
       userId: res.locals.currentUser.id,
-      gameId: data.gameId,
+      // gameId: data.gameId,
       content: req.body.content,
       //may have to re do comments table and add name
     })
     .then((resPost) => {
-      res.redirect(`/:game_id`) //<-- not sure about routes
+      res.redirect(`/games/:game_id`) //<-- not sure about routes
     })
     .catch((err) => {
       console.log(error)
