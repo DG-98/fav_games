@@ -7,6 +7,7 @@ const passport = require('./config/ppConfig')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const axios = require("axios")
+const methodOverride = require("method-override")
 
 
 // views (ejs and layouts) set up
@@ -30,6 +31,8 @@ app.use(passport.session())
 // flash middleware (must go AFTER session middleware)
 app.use(flash())
 
+//method override middlware 
+app.use(methodOverride("_method"))
 // custom middleware
 app.use((req, res, next) => {
     // before every route, attach the flash messages and current user to res.locals
