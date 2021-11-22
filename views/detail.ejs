@@ -1,4 +1,6 @@
-
+<body style="text-align: center; font-family: 'Press Start 2P', cursive; background-color: aqua;">
+  
+<link rel="stylesheet" href="/static/css/style.css">
 <h3><img src="<%= gameInfo.background_image%>" alt=""></h3>
 <h1><%=gameInfo.name%></h1>
 <h2>Release Date:<%=gameInfo.released%></h2>
@@ -33,12 +35,12 @@
     </form>
 <form action="/games/comments?_method=PUT" method="POST">
   <label for="comment"></label>
-  <input type="text" name="name" value="" />
   <input hidden type="text" name="id" value="<%=comment.id%>"> 
-  <input hidden type="text" name="content" value="<%=comment.content%>"> 
+  <input type="text" name="content" value="<%= comment.content %>">
+  <input hidden type="text" name="gameId" value="<%=gameInfo.gameId%>">  
   <input type="submit" value="edit comment" />
 </form>
     </p>
     <%})%>
 
-  
+  </body>

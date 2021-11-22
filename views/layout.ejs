@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="http://localhost:3000/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Express Auth</title>
 </head>
 <body>
-    <header>
-        <h1>Express Authentication Boilerplate</h1>
+    <header style="font-family: 'Press Start 2P', cursive;">
+        <h1>VGDB</h1>
+        <h3>Video Game Database</h3>
         <nav>
-            <ul>
+            <ul style="margin: 30px; list-style-type: none; font-family: 'Press Start 2P', cursive;">
+              <li style="margin: 30px;"><a href="/">Home</a></li>
               <% if (!currentUser) { %>
-                <li><a href="/auth/signup">Signup</a></li>
-                <li><a href="/auth/login">Login</a></li>
+                <li style="margin: 30px;" ><a href="/auth/signup">Signup</a></li>
+                <li style="margin: 30px;" ><a href="/auth/login">Login</a></li>
               <% } else { %>
-                <li><a href="/auth/logout">Logout</a></li>
-                <li><a href="/favorites">Profile</a></li>
+                <li style="margin: 30px;" ><a href="/auth/logout">Logout</a></li>
+                <li style="margin: 30px;" ><a href="/favorites">Profile</a></li>
               <% } %>
             </ul>
           </nav>

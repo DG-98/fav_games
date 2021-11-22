@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const axios = require("axios")
 const db = require("../models")
+const isLoggedIn = require("../middleware/isLoggedIn")
 
 
 router.get('/', (req, res) => {
@@ -19,7 +20,7 @@ db.userGame.findAll({
 })
 
 //route to save faves 
-router.post("/addFave", (req, res)=>{
+router.post("/addFave", isLoggedIn, (req, res)=>{
     // console.log('favegames');
     const data = JSON.parse(JSON.stringify(req.body))
     console.log("this is data", data)

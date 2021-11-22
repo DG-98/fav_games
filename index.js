@@ -33,6 +33,7 @@ app.use(flash())
 
 //method override middlware 
 app.use(methodOverride("_method"))
+app.use("/static", express.static("public"))
 // custom middleware
 app.use((req, res, next) => {
     // before every route, attach the flash messages and current user to res.locals

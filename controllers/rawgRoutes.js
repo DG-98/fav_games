@@ -3,6 +3,7 @@ const router = express.Router()
 const axios = require("axios")
 const db = require("../models")
 const game = require("../models/game")
+const isLoggedIn = require("../middleware/isLoggedIn")
 
 
 //route to show various games after searcing a title. Displays titles using api call
@@ -74,7 +75,7 @@ router.get("/:game_id", function(req, res){
 })
 
 //route in progress to make comments 
-router.post("/comments", (req, res) => {
+router.post("/comments", isLoggedIn , (req, res) => {
   db.comment
     .create({
       name: res.locals.currentUser.name,
@@ -92,11 +93,33 @@ router.post("/comments", (req, res) => {
     })
 })
 
+
+//route in progress to update/edit comments 
+router.put("/comments", isLoggedIn, (req, res) => {
+  //maybe .patch instead of put?
+  db.comment
+    .findOne({
+      where: { userId: res.locals.currentUser.id, id: req.body.id },
+    })
+    .then((updatedComment) => {
+      updatedComment.update({ content: req.body.content })
+      console.log("updated comment\n", updatedComment)
+    })
+    .then((donut) => {
+      console.log("this is the updated comment pt 2:", donut)
+      res.redirect(`/games/${req.body.gameId}`)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
+
+
 //route in progress to delete comments 
-router.delete("/comments", (req, res)=>{
+router.delete("/comments", isLoggedIn, (req, res) => {
   db.comment
     .destroy({
-      where: { id: req.body.id},
+      where: { id: req.body.id, userId: res.locals.currentUser.id },
     })
     .then((deleted) => {
       console.log("I deleted", deleted)
@@ -109,23 +132,7 @@ router.delete("/comments", (req, res)=>{
 
 
 
-//route in progress to update/edit comments 
-router.put("/comments", (req, res)=>{ //maybe .patch instead of put?
-  db.comment.findOne({
-    userId: res.locals.currentUser.id,
-    id: req.body.id,
-  })
-  .then((updatedComment)=>{
-    console.log("updated comment\n", updatedComment);
-    updatedComment.update ({content: req.body.content})
-  })
-  .then ((redRedirect)=>{
-    res.redirect(`/`)    
-  })
-  .catch((error) => {
-    console.log(error)
-  })
-})
+
 
 
 
