@@ -65,13 +65,10 @@ router.get("/:game_id", function(req, res){
           console.log("this is stuff", stuff)
           res.render("detail", { gameInfo: stuff.gameInfo, comments: stuff.comments })
         }) 
-    })
-    
-    
-       
-  .catch((err) => {
+    .catch((err) => {
       console.log(err)
-  })
+    })
+  })      
 })
 
 //route in progress to make comments 
