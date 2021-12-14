@@ -38,7 +38,7 @@ After searching for a game you'll be presented with a list of the game you searc
 # Set Up For Use on Local Machine (Mac & Postgres)
 
 Here's how to download and run this application on your local mac:
-
+* Sign up and get an API key from https://rawg.io/apidocs
 * Fork & Clone
 * `npm i` to install dependencies
 * create database with `createdb express_auth_development` ***OR CHANGE DB NAME TO MATCH THE NAME OF YOUR APP*** _(you'll need to make changes to `config/config.json` too)_
