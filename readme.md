@@ -6,6 +6,12 @@ The goal for this project was to create a full stack application using data from
 
 Using postgresQL I constructed a diagram to show the relationship and interactions of the different tables of the database. Users of the site(user table) can serach for games they're interested in (games table) and if logged in can leave comments are add a game to their favorites list (comments and user games tables respectively). 
 
+# RESTful Routes
+-GET: /results - Retrieves the results of game search, /:game_id - Shows details of clicked game after game search.
+-POST: /comments - Route used to post comments on the game page 
+-
+
+
 # The Front-End 
 ![image](https://user-images.githubusercontent.com/85405879/145738803-67244fb5-d36a-4b89-af83-bb443898fd8d.png)
 
