@@ -16,7 +16,7 @@ Using postgresQL I constructed a diagram to show the relationship and interactio
 # The Front-End 
 ![image](https://user-images.githubusercontent.com/85405879/145738803-67244fb5-d36a-4b89-af83-bb443898fd8d.png)
 
-When visiting the site you have the option to sigh up, log in or search for a game. I did not want users to feel like they had to have an account to access the basic features of the website. 
+When visiting the site you have the option to sign up, log in or search for a game. I did not want users to feel like they had to have an account to access the basic features of the website. 
 
 ![image](https://user-images.githubusercontent.com/85405879/145738869-e93e3082-2bc0-4551-a7b6-1ee9e0c1a49f.png)
 
